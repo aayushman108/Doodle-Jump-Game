@@ -9,6 +9,10 @@ let doodlerRightImg;
 let doodlerLeftImg;
 let platformImg;
 
+const startAudio = new Audio('game_start.wav');
+const runningAudio = new Audio('game_running.wav');
+const endAudio = new Audio('game_end.wav');
+
 // Initialize the game
 function startGame() {
     canvas = document.getElementById("canvas");
@@ -31,6 +35,26 @@ function startGame() {
     platformImg.src = "./platform.png";
 
     placePlatform();
+
+    //game start sound
+    startAudio.play();
+
+    // if(!gameOver){
+    //     setInterval(() => runningAudio.play(), 1000/60);
+    // }else if(gameOver){
+    //     runningAudio.pause();
+    //     endAudio.play();
+    // }
+
+    let intervalId = setInterval(() => {
+        if(!gameOver){
+            runningAudio.play();
+        }else{
+            clearInterval(intervalId);
+            runningAudio.pause();
+            endAudio.play();
+        }
+    }, 1000/60);
 
     // Set up event listeners for controls
     document.addEventListener("keydown", moveDoodler);
