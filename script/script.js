@@ -9,9 +9,9 @@ let doodlerRightImg;
 let doodlerLeftImg;
 let platformImg;
 
-const startAudio = new Audio('../assets/game_start.wav');
-const runningAudio = new Audio('../assets/game_running.wav');
-const endAudio = new Audio('../assets/game_end.wav');
+const startAudio = new Audio('./assets/game_start.wav');
+const runningAudio = new Audio('./assets/game_running.wav');
+const endAudio = new Audio('./assets/game_end.wav');
 canvas = document.getElementById("canvas");
 
 
@@ -25,17 +25,17 @@ function startGame() {
 
     //creating player or doodler
     doodlerRightImg = new Image();
-    doodlerRightImg.src = "../assets/doodler-right.png";
+    doodlerRightImg.src = "./assets/doodler-right.png";
 
     doodlerLeftImg = new Image();
-    doodlerLeftImg.src = "../assets/doodler-left.png";
+    doodlerLeftImg.src = "./assets/doodler-left.png";
 
     player = new Player();
 
     //creating platforms
 
     platformImg = new Image();
-    platformImg.src = "../assets/platform.png";
+    platformImg.src = "./assets/platform.png";
 
     //Place platform
     placePlatform();
