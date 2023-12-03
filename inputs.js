@@ -1,27 +1,27 @@
 let moving = false;
 
 const keys = {
-  A: false,
-  D: false,
-  W: false,
-  S: false,
+  Left: false,
+  Right: false,
+  Up: false,
+  Down: false,
   SPACE: false,
 };
 
 window.onkeydown = (e) => {
   moving = true;
   switch (e.code) {
-    case 'KeyA':
-      keys.A = true;
+    case 'KeyLeft':
+      keys.Left = true;
       break;
-    case 'KeyD':
-      keys.D = true;
+    case 'KeyRight':
+      keys.Right = true;
       break;
-    case 'KeyW':
-      keys.W = true;
+    case 'KeyUp':
+      keys.Up = true;
       break;
-    case 'KeyS':
-      keys.S = true;
+    case 'KeyDown':
+      keys.Down = true;
       break;
     case 'Space':
       keys.SPACE = true;
