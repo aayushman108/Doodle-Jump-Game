@@ -4,6 +4,10 @@ let canvas, ctx;
 let player, platformArray;
 let score = 0;
 let gameSpeed = 1;
+let gameOver = false;
+let doodlerRightImg;
+let doodlerLeftImg;
+let platformImg;
 
 // Initialize the game
 function startGame() {
@@ -11,18 +15,22 @@ function startGame() {
     ctx = canvas.getContext("2d");
     canvas.width = CANVAS_WIDTH;
     canvas.height = CANVAS_HEIGHT;
-    canvas.style.border = "2px solid black";
+    canvas.style.backgroundColor = "pink";
+
+    doodlerRightImg = new Image();
+    doodlerRightImg.src = "./doodler-right.png";
+
+    doodlerLeftImg = new Image();
+    doodlerLeftImg.src = "./doodler-left.png";
 
     player = new Player();
 
     //creating platforms
-    platformArray = [];
 
-    for (let i = 0; i < 8; i++) {
-        let y = CANVAS_HEIGHT - 75*i - 150;
-        let platform = new Platform(y);
-        platformArray.push(platform);
-    }
+    platformImg = new Image();
+    platformImg.src = "./platform.png";
+
+    placePlatform();
 
     // Set up event listeners for controls
     document.addEventListener("keydown", moveDoodler);
@@ -34,6 +42,7 @@ function startGame() {
 // Game loop
 function updateGame() {
     // Update game elements
+    
     player.update();
     //platformArray.forEach(platform => platform.update());
 
@@ -52,6 +61,13 @@ function updateGame() {
             player.velocityY = initialVelocityY;
             player.velocityX = 0;
         }
+        if(player.y+ DOODLER_HEIGHT === platform.y){
+            score++;
+            console.log(score);
+        }
+        if(player.y > CANVAS_HEIGHT){
+            gameOver = true;
+        }
     });
 
     // Clear the canvas
@@ -60,6 +76,16 @@ function updateGame() {
     // Draw game elements
     player.draw();
     platformArray.forEach(platform => platform.draw());
+
+
+    updateScore();
+    ctx.fillStyle = "blue";
+    ctx.font = "18px sans-serif";
+    ctx.fillText(`score: ${score}`, 15, 25);
+
+    if(gameOver){
+        ctx.fillText("Game Over: Press 'Space' to Restart", CANVAS_WIDTH/7, CANVAS_HEIGHT*7/8);
+    }
 
     // updateScore();
 
@@ -78,21 +104,38 @@ function updateGame() {
 function moveDoodler(e) {
     player.jump();
     if(e.code == "ArrowLeft"){
-        player.velocityX = -1;
+        player.velocityX = -4;
+        player.img = doodlerLeftImg;
     }
     if(e.code == "ArrowRight"){
-        player.velocityX = 1;
+        player.velocityX = 4;
+        player.img = doodlerRightImg;
     }
     if(e.code == "ArrowUp"){
         player.velocityY = initialVelocityY;
     }
+    if(e.code == "Space" && gameOver){
+        player = new Player;
+        gameOver = false;
+        score = 0;
+        placePlatform();
+    }
+}
+
+function placePlatform(){
+    platformArray = [];
+
+    for (let i = 0; i < 8; i++) {
+        let y = CANVAS_HEIGHT - 75*i - 150;
+        let platform = new Platform(y);
+        platformArray.push(platform);
+    }
 }
 
 //update score
-// function updateScore(){
-//     let points = Math.floor( 50*Math.random());
-//     if(player.velocityX )
-// }
+function updateScore(){
+    return score;
+}
 
 
 // Start the game when the window loads

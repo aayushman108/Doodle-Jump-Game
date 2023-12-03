@@ -3,6 +3,7 @@ class Player {
     constructor() {
         this.width = DOODLER_WIDTH;
         this.height = DOODLER_HEIGHT;
+        this.img = doodlerRightImg;
         this.x = canvas.width / 2 - this.width / 2;
         this.y = canvas.height - this.height - 10;
         this.jumpStrength = 15;
@@ -10,6 +11,7 @@ class Player {
         this.velocityX = 0;
         this.gravity = 0.4;
         this.isJumping = false;
+        this.landed = false;
     }
 
     jump() {
@@ -37,7 +39,6 @@ class Player {
     }
 
     draw() {
-        ctx.fillStyle = "blue";
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 }
