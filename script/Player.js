@@ -11,7 +11,6 @@ class Player {
         this.velocityX = 0;
         this.gravity = 0.4;
         this.isJumping = false;
-        this.landed = false;
     }
 
     jump() {
