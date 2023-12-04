@@ -1,6 +1,6 @@
 //canvas dimension
-const CANVAS_WIDTH = 400;
-const CANVAS_HEIGHT = 600;
+const CANVAS_WIDTH = 500;
+const CANVAS_HEIGHT = 700;
 
 //doodler dimension
 const DOODLER_WIDTH = 40;
@@ -13,5 +13,5 @@ const PLATFORM_HEIGHT = 20;
 
 //Physics
 const initialVelocityY = -10;
-const VELOCITY_X = 4;
+const VELOCITY_X = 5;
 const VELOCITY_Y = 6;

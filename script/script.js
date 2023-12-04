@@ -22,6 +22,8 @@ function startGame() {
     canvas.width = CANVAS_WIDTH;
     canvas.height = CANVAS_HEIGHT;
     canvas.style.backgroundColor = "pink";
+    ctx.font = '400 30px Creepster, sans-serif';
+
 
     //creating player or doodler
     doodlerRightImg = new Image();
@@ -89,13 +91,11 @@ function updateGame() {
     platformArray.forEach(platform => platform.draw());
 
     //Score
-    ctx.fillStyle = "blue";
-    ctx.font = "18px sans-serif";
-    ctx.fillText(`score: ${score}`, 15, 25);
+    ctx.fillText(`score: ${score}`, 15, 30);
 
     //Game over and Restart the game
     if(gameOver){
-        ctx.fillText("Game Over: Press 'Space' to Restart", CANVAS_WIDTH/7, CANVAS_HEIGHT*7/8);
+        ctx.fillText("Game Over: Press 'Space' to Restart", CANVAS_WIDTH/8, CANVAS_HEIGHT*7/8);
     }
 
     requestAnimationFrame(updateGame);
